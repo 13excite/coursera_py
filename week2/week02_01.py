@@ -25,6 +25,11 @@ def get_value(user_key, json_data):
         ##  get values
     return None
 
+#  WORK WITH JSON!!!!!
+#data = {"1":"one", "2":"two"} # python словарь
+#json_data = json.dumps(data) # упаковываем
+#parsed_json = json.loads(json_data) #распаковываем
+#print data == parsed_json
 
 
 parser = argparse.ArgumentParser(description='Simple key-value store script')
