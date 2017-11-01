@@ -3,7 +3,7 @@ import tempfile
 import argparse
 import json
 
-storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
+
 
 
 def check_key_exsist(user_key, dict):
@@ -30,7 +30,7 @@ def get_value(user_key, json_data):
     d = get_dict_from_json(json_data)
     if check_key_exsist(user_key, d):
         return ", ".join(map(str, d[user_key]))
-    return None
+    return 'None'
 
 #  WORK WITH JSON!!!!!
 #data = {"1":"one", "2":"two"} # python словарь
@@ -48,8 +48,12 @@ test_hash = {
         "one" : ["two"],
         "1" : ["test", "ddd"],
     }
+storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
+print(storage_path)
 if args.key and not args.value:
-    print(type(args.key))
-    print(get_value(args.key, extract_dict_to_json(test_hash)))
+    with open(storage_path, 'r') as f:
+        print(os.path.isfile(f))
+        #print(get_value(args.key, extract_dict_to_json(f.read())))
+        #f.closed
 elif args.key and args.value:
     print(add_value(args.key, args.value, extract_dict_to_json(test_hash)))
