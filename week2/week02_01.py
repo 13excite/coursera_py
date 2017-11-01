@@ -20,7 +20,8 @@ def extract_dict_to_json(dictinary):
 def add_value(user_key, user_value, json_data):
     d = get_dict_from_json(json_data)
     if check_key_exsist(user_key, d):
-        return d[user_key].append(user_value)
+        d[user_key].append(user_value)
+        return extract_dict_to_json(d)
     d[user_key] = [user_value]
     return extract_dict_to_json(d)
 
@@ -47,8 +48,8 @@ test_hash = {
         "one" : ["two"],
         "1" : ["test", "ddd"],
     }
-if args.key:
-
+if args.key and not args.value:
     print(type(args.key))
     print(get_value(args.key, extract_dict_to_json(test_hash)))
-
+elif args.key and args.value:
+    print(add_value(args.key, args.value, extract_dict_to_json(test_hash)))
