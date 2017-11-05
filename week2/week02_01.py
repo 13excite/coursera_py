@@ -18,7 +18,12 @@ def extract_dict_to_json(dictinary):
     return json.dumps(dictinary)
 
 def add_value(user_key, user_value, json_data):
-    d = get_dict_from_json(json_data)
+    print(json_data)
+    if len(json_data) < 1 or json_data == "None":
+        print('fsfsdfsdfsdfsd')
+        d = dict()
+    else:
+        d = get_dict_from_json(json_data)
     if check_key_exsist(user_key, d):
         d[user_key].append(user_value)
         return extract_dict_to_json(d)
@@ -31,6 +36,17 @@ def get_value(user_key, json_data):
     if check_key_exsist(user_key, d):
         return ", ".join(map(str, d[user_key]))
     return 'None'
+
+def open_read_file(file_path):
+    if os.path.isfile(file_path):
+        with open(file_path, 'r') as f:
+            data = f.read()
+            f.closed
+            return data
+    return None
+def open_write_file(file_path, data):
+    with open(file_path, 'w') as f:
+        f.write(data)
 
 #  WORK WITH JSON!!!!!
 #data = {"1":"one", "2":"two"} # python словарь
@@ -50,10 +66,11 @@ test_hash = {
     }
 storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
 print(storage_path)
+
 if args.key and not args.value:
-    with open(storage_path, 'r') as f:
-        print(os.path.isfile(f))
-        #print(get_value(args.key, extract_dict_to_json(f.read())))
-        #f.closed
+
+    print(get_value(args.key, extract_dict_to_json(open_read_file(storage_path))))
+
 elif args.key and args.value:
-    print(add_value(args.key, args.value, extract_dict_to_json(test_hash)))
+    open_write_file(storage_path, add_value(args.key, args.value, open_read_file(storage_path)))
+
