@@ -7,8 +7,9 @@ import json
 
 
 def check_key_exsist(user_key, dict):
-    if user_key in dict:
-        return True
+    if dict != None:
+        if user_key in dict and dict != None:
+           return True
     return False
 
 def get_dict_from_json(json_data):
@@ -18,9 +19,7 @@ def extract_dict_to_json(dictinary):
     return json.dumps(dictinary)
 
 def add_value(user_key, user_value, json_data):
-    print(json_data)
-    if len(json_data) < 1 or json_data == "None":
-        print('fsfsdfsdfsdfsd')
+    if  json_data == None:
         d = dict()
     else:
         d = get_dict_from_json(json_data)
@@ -32,7 +31,7 @@ def add_value(user_key, user_value, json_data):
 
 
 def get_value(user_key, json_data):
-    d = get_dict_from_json(json_data)
+    d = json.loads(json.loads(json_data))
     if check_key_exsist(user_key, d):
         return ", ".join(map(str, d[user_key]))
     return 'None'
@@ -60,12 +59,8 @@ parser.add_argument("--key", help="set key to adding value to storage, if --key 
 parser.add_argument("--value", help="set value to storing to storage")
 args = parser.parse_args()
 
-test_hash = {
-        "one" : ["two"],
-        "1" : ["test", "ddd"],
-    }
 storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
-print(storage_path)
+#print(storage_path)
 
 if args.key and not args.value:
 
