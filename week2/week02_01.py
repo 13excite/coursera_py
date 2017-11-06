@@ -31,9 +31,10 @@ def add_value(user_key, user_value, json_data):
 
 
 def get_value(user_key, json_data):
-    d = json.loads(json.loads(json_data))
-    if check_key_exsist(user_key, d):
-        return ", ".join(map(str, d[user_key]))
+    if json_data  != 'null':
+        d = json.loads(json.loads(json_data))
+        if check_key_exsist(user_key, d):
+            return ", ".join(map(str, d[user_key]))
     return 'None'
 
 def open_read_file(file_path):
@@ -46,11 +47,6 @@ def open_read_file(file_path):
 def open_write_file(file_path, data):
     with open(file_path, 'w') as f:
         f.write(data)
-
-#  WORK WITH JSON!!!!!
-#data = {"1":"one", "2":"two"} # python словарь
-#json_data = json.dumps(data) # упаковываем
-#parsed_json = json.loads(json_data) #распаковываем
 
 
 
