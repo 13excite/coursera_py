@@ -1,9 +1,10 @@
 import functools
 
 def to_json(func):
-    #@functools.wraps(func)
+    @functools.wraps(func)
+    def json_decode(*args, **kwargs):
+        result = func(*args, **kwargs)
 
-    pass
 
 
 
@@ -12,4 +13,4 @@ def get_data():
     'data': 42
   }
 
-print(get_data())
+print(type(get_data()))
