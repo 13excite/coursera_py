@@ -21,3 +21,4 @@ def get_data():
 
 print(get_data())
 print(get_data.__name__)
+
