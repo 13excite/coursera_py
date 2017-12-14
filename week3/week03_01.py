@@ -9,7 +9,7 @@ class FileReader:
     def read(self):
         try:
             file = open(self.file_path, 'r')
-            return print(file.read())
+            return file.read()
         except IOError:
             return ""
 
