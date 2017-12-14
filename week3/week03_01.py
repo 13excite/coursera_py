@@ -12,7 +12,3 @@ class FileReader:
             return file.read()
         except IOError:
             return ""
-
-
-reader = FileReader("README.md")
-print(reader.read())
