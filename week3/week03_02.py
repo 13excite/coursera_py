@@ -32,7 +32,7 @@ def get_car_list(csv_filename):
     car_list = []
     reader = csv.reader(csv_filename)
     for row in reader:
-        if row:
+        if row and row[0].replace(";",""):
             car_list.append(row[0].strip().split(';'))
     return car_list[1:]
 
