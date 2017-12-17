@@ -1,5 +1,6 @@
 import os
 import csv
+import functools
 
 
 class CarBase:
@@ -27,8 +28,8 @@ class Truck(CarBase):
 
     def get_body_volume(self):
         if self.body_whl:
-            pass
-        pass
+            return functools.reduce(lambda x, y: float(x)*float(y), self.body_whl.split('x'))
+         return 0
 
 
 class SpecMachine(CarBase):
