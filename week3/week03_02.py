@@ -53,6 +53,32 @@ def get_car_list(csv_filename):
 
 if __name__ == '__main__':
 
+    cars = []
+    trucks = []
+    spec_macs = []
+
     data = get_car_list('_af3947bf3a1ba3333b0c891e7a8536fc_coursera_week3_cars.csv')
-    print(data)
-    print(len(data[0]))
+   # print(car_data)
+    for i in range(len(data) - 1):
+        if data[i][0] == "car":
+            car = Car(data[i][1], data[i][3], data[i][5], data[i][2])
+            cars.append(car)
+        elif data[i][0] == "truck":
+            truck = Truck(data[i][1], data[i][3], data[i][5], data[i][4])
+            trucks.append(truck)
+        elif data[i][0] == "spec_machine":
+            spec_mac = SpecMachine(data[i][1], data[i][3], data[i][5], data[i][6])
+            spec_macs.append(spec_mac)
+        else:
+            print("No such type:", data[i][0])
+
+        print("Cars:", cars)
+        print("Trucks:", trucks)
+        print("Spec_macs:", spec_macs)
+
+        for car in range(len(cars)):
+            print("photo_car:", cars[car].get_photo_file_ext())
+
+        for truck in range(len(trucks)):
+            print('body_size_track:', trucks[truck].body_whl)
+            print("photo_truck:", trucks[truck].get_photo_file_ext())
