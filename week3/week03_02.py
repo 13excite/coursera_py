@@ -42,16 +42,17 @@ def get_car_list(csv_filename):
     car_list = []
     try:
         with open(csv_filename,'r') as f:
-            reader = csv.reader(f)
+            reader = csv.reader(f, delimiter=";")
             for row in reader:
+               # print(row)
                 if row and row[0].replace(";",""):
-                    car_list.append(row[0].strip().split(';'))
+                    car_list.append(row)
     except IOError:
         return "Error opening file"
-
     return car_list[1:]
 
+if __name__ == '__main__':
 
-data = get_car_list('_af3947bf3a1ba3333b0c891e7a8536fc_coursera_week3_cars.csv')
-print(data)
-print(len(data[0]))
+    data = get_car_list('_af3947bf3a1ba3333b0c891e7a8536fc_coursera_week3_cars.csv')
+    print(data)
+    print(len(data[0]))
