@@ -4,28 +4,37 @@ import csv
 
 class CarBase:
     def __init__(self, brand, photo_file_name, carrying):
-        pass
+        self.brand = brand
+        self.photo_file_name = photo_file_name
+        self.carrying = carrying
 
     def get_photo_file_ext(self):
-        pass
+        if self.photo_file_name:
+            return os.path.splitext(self.photo_file_name)[1]
+
 
 
 class Car(CarBase):
     def __init__(self, brand, photo_file_name, carrying, passenger_seats_count):
-        pass
+        super().__init__(brand, photo_file_name, carrying)
+        self.passenger_seats_count = passenger_seats_count
 
 
 class Truck(CarBase):
     def __init__(self, brand, photo_file_name, carrying, body_whl):
-        pass
+        super().__init__(brand, photo_file_name, carrying)
+        self.body_whl = body_whl
 
     def get_body_volume(self):
+        if self.body_whl:
+            pass
         pass
 
 
 class SpecMachine(CarBase):
     def __init__(self, brand, photo_file_name, carrying, extra):
-        pass
+        super().__init__(brand, photo_file_name, carrying)
+        self.extra = extra
 
 
 def get_car_list(csv_filename):
