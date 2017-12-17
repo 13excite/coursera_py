@@ -4,7 +4,8 @@ import functools
 
 
 class CarBase:
-    def __init__(self, brand, photo_file_name, carrying):
+    def __init__(self, car_type, brand, photo_file_name, carrying):
+        self.car_type = car_type
         self.brand = brand
         self.photo_file_name = photo_file_name
         self.carrying = carrying
@@ -16,14 +17,14 @@ class CarBase:
 
 
 class Car(CarBase):
-    def __init__(self, brand, photo_file_name, carrying, passenger_seats_count):
-        super().__init__(brand, photo_file_name, carrying)
+    def __init__(self, car_type, brand, photo_file_name, carrying, passenger_seats_count):
+        super().__init__(car_type, brand, photo_file_name, carrying)
         self.passenger_seats_count = passenger_seats_count
 
 
 class Truck(CarBase):
-    def __init__(self, brand, photo_file_name, carrying, body_whl):
-        super().__init__(brand, photo_file_name, carrying)
+    def __init__(self, car_type, brand, photo_file_name, carrying, body_whl):
+        super().__init__(car_type, brand, photo_file_name, carrying)
         self.body_whl = body_whl
 
     def get_body_volume(self):
@@ -33,8 +34,8 @@ class Truck(CarBase):
 
 
 class SpecMachine(CarBase):
-    def __init__(self, brand, photo_file_name, carrying, extra):
-        super().__init__(brand, photo_file_name, carrying)
+    def __init__(self, car_type, brand, photo_file_name, carrying, extra):
+        super().__init__(car_type, brand, photo_file_name, carrying)
         self.extra = extra
 
 
@@ -61,13 +62,13 @@ if __name__ == '__main__':
    # print(car_data)
     for i in range(len(data) - 1):
         if data[i][0] == "car":
-            car = Car(data[i][1], data[i][3], data[i][5], data[i][2])
+            car = Car(data[i][0], data[i][1], data[i][3], data[i][5], data[i][2])
             cars.append(car)
         elif data[i][0] == "truck":
-            truck = Truck(data[i][1], data[i][3], data[i][5], data[i][4])
+            truck = Truck(data[i][0], data[i][1], data[i][3], data[i][5], data[i][4])
             trucks.append(truck)
         elif data[i][0] == "spec_machine":
-            spec_mac = SpecMachine(data[i][1], data[i][3], data[i][5], data[i][6])
+            spec_mac = SpecMachine(data[i][0], data[i][1], data[i][3], data[i][5], data[i][6])
             spec_macs.append(spec_mac)
         else:
             print("No such type:", data[i][0])
@@ -76,7 +77,11 @@ if __name__ == '__main__':
         print("Trucks:", trucks)
         print("Spec_macs:", spec_macs)
 
+###   neeed debug, why not attribute car_type
+        print(car.car_type)
         for car in range(len(cars)):
+            print("photo_car:", cars[car].get_photo_file_ext())
+
             print("photo_car:", cars[car].get_photo_file_ext())
 
         for truck in range(len(trucks)):
