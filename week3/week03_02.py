@@ -23,12 +23,14 @@ class Car(CarBase):
 class Truck(CarBase):
     def __init__(self, car_type, brand, photo_file_name, carrying, body_whl):
         super().__init__(car_type, brand, photo_file_name, carrying)
+        self.body_whl = body_whl
+        whl_list = self.body_whl.split('x')
         if not body_whl:
             self.body_width = 0
             self.body_height = 0
             self.body_length = 0
         else:
-            self.body_length, self.body_width, self.body_height = tuple(map(float, body_whl.split('x')))
+            self.body_length, self.body_width, self.body_height = tuple(map(float, whl_list))
 
     def get_body_volume(self):
         if self.body_whl:
@@ -69,9 +71,8 @@ def get_car_list(csv_filename):
     return car_list
 
 #if __name__ == '__main__':
-
    # data = get_car_list('_af3947bf3a1ba3333b0c891e7a8536fc_coursera_week3_cars.csv')
-    #test = data[1]
-    #print(test.brand)
+   # test = data[1]
+   # print(test.get_body_volume())
 
 
