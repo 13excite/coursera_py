@@ -17,7 +17,7 @@ class CarBase:
 class Car(CarBase):
     def __init__(self, car_type, brand, photo_file_name, carrying, passenger_seats_count):
         super().__init__(car_type, brand, photo_file_name, carrying)
-        self.passenger_seats_count = passenger_seats_count
+        self.passenger_seats_count = int(passenger_seats_count)
 
 
 class Truck(CarBase):
