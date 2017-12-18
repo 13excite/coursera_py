@@ -23,7 +23,12 @@ class Car(CarBase):
 class Truck(CarBase):
     def __init__(self, car_type, brand, photo_file_name, carrying, body_whl):
         super().__init__(car_type, brand, photo_file_name, carrying)
-        self.body_whl = body_whl
+        if not body_whl:
+            self.body_width = 0
+            self.body_height = 0
+            self.body_length = 0
+        else:
+            self.body_length, self.body_width, self.body_height = tuple(map(float, body_whl.split('x')))
 
     def get_body_volume(self):
         if self.body_whl:
