@@ -8,7 +8,11 @@ class File():
         self.filename = filename
 
     def __add__(self, other):
-        pass
+        with open(self.filename, 'r') as file_one, open(other.filename, 'r') as file_two:
+            data = file_one.read() + file_two.read()
+            new_obj = File(os.path.join(tempfile.gettempdir(), 'new'))
+            new_obj.write(data)
+            return new_obj
 
     def __getitem__(self, item):
         with open(self.filename, 'r') as file:
@@ -19,7 +23,9 @@ class File():
         return '%s' % self.filename
 
     def write(self, string):
-        pass
+        with open(self.filename, 'w') as f:
+            f.write(string)
+
 
 obj = File('/tmp/file.txt')
 
