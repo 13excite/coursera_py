@@ -11,10 +11,12 @@ class File():
         pass
 
     def __getitem__(self, item):
-        pass
+        with open(self.filename, 'r') as file:
+            data = file.readlines()
+            return data[item].strip()
 
     def __repr__(self):
-        pass
+        return '%s' % self.filename
 
     def write(self, string):
         pass
