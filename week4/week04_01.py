@@ -27,16 +27,16 @@ class File():
             f.write(string)
 
 
-obj = File('/tmp/file.txt')
+#obj = File('/tmp/file.txt')
 
-obj.write('line\n')
+#obj.write('line\n')
 
-first = File('/tmp/first')
-second = File('/tmp/second')
+#first = File('/tmp/first')
+#second = File('/tmp/second')
 
-new_obj = first + second
-print(new_obj)
+#new_obj = first + second
+#print(new_obj)
 
-obj_test = File('/tmp/file.txt')
+#obj_test = File('/tmp/file.txt')
 
-print(obj_test)
+#print(obj_test)
