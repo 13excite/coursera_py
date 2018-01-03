@@ -1,3 +1,5 @@
+import threading
+
 class Queue(object):
     def __init__(self, size=5):
         self._size = size
