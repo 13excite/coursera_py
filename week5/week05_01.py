@@ -9,10 +9,15 @@ class Client:
         self._port = port
         self._timeout = timeout
 
-    def get(self):
-        pass
+    def put(self, name, value, timestamp=int(time.time())):
+        with socket.create_connection((self._host, self._port), self._timeout) as s:
+            data = 'put %s %f %d\n' % (name, value, timestamp)
+            try:
+                s.send(data.encode('utf-8'))
+            except socket.error:
+                raise ConnectionError
 
-    def put(self):
+    def get(self):
         pass
 
 
@@ -28,4 +33,4 @@ client.put("eardrum.cpu", 3, timestamp=1150864250)
 client.put("eardrum.cpu", 4, timestamp=1150864251)
 client.put("eardrum.memory", 4200000)
 
-print(client.get("*"))
+#print(client.get("*"))
